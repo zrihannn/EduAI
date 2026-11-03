@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: eduai-recommender
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+server:
+  port: 8080
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+    min-response-size: 1024
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:very_secret_key_change_me_in_production_so_it_is_safe}
+    expiry-ms: ${JWT_EXPIRY_MS:86400000}
+    refresh-expiry-ms: ${JWT_REFRESH_EXPIRY_MS:604800000}
+  s3:
+    bucket: ${S3_BUCKET:eduai-notes}
+    region: ${S3_REGION:us-east-1}
+    access-key: ${S3_ACCESS_KEY:dev-key}
+    secret-key: ${S3_SECRET_KEY:dev-secret}
+  python-ai:
+    url: ${PYTHON_AI_SERVICE_URL:http://localhost:8001}
+  allowed-origins: ${ALLOWED_ORIGINS:http://localhost:5173}
